@@ -43,16 +43,15 @@ class Quiz:
         for question in self.questions:
             answer = self.ask(question)
             if answer:
+                # log if they got the questions right
                 self.answers.append(True)
             else: 
                 self.answers.append(False)
-        end_time = log_time()
-        # log if they got the questions right
         # log the end time
-        # show the summary
+        end_time = log_time()
         time_elapsed = calculate_elapsed_time(start_time, end_time)
+        # show the summary
         self.summary(time_elapsed)
-        pass
 
     def ask(self, question):
         # log the start time
@@ -71,18 +70,18 @@ class Quiz:
         # send back elapsed time
 
     def summary(self, time_elapsed):
-        # print how many you got right and the total # of questions. 5/10
         total_number_questions = len(self.questions)
         total_correct = self.answers.count(True)
+        # print the total time for the quiz: 30 seconds.
         print(f"You completed this test in {time_elapsed} seconds")
+        # print how many you got right and the total # of questions. 5/10
         if total_correct >= (total_number_questions / 2):
             print(f"Congratulations! You got {total_correct} questions right out of a possible {total_number_questions}!")
         elif total_correct == 0:
             print(f"Oh no!!! You really need to brush up on your maths!!")
         else:
             print(f"Oups! You only got {total_correct} questions correct out of a possible {total_number_questions}")
-        # print the total time for the quiz: 30 seconds.
+
 
 new_quiz = Quiz()
-
-print(new_quiz.take_quiz())
+new_quiz.take_quiz()
